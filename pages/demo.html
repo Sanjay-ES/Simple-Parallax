@@ -15,6 +15,36 @@
   </head>
   <body>
     <!-- body content start -->
+    <div class="px-forest" style="background-image: url('../assets/images/forest-bg.jpg');">
+      <div class="px-forest__outer">
+        <div class="px-forest__nav">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Navbar</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
     <!-- body content end -->
 
     <!-- scripts -->
@@ -22,7 +52,37 @@
     <script src="../assets/js/aos.js"></script>
     <script src="../assets/js/slick.min.js"></script>
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script> 
     <script src="../assets/js/script.js"></script>
+    <script>
+      gsap.to('.px-forest__outer',{
+        scrollTrigger:{
+          scrub:true,
+        },
+        width:'25%',
+      })
+      gsap.to('.navbar-collapse',{
+        scrollTrigger:{
+          scrub:true,
+        },
+        display:'none'
+      })
+      gsap.to('.navbar-nav',{
+        scrollTrigger:{
+          scrub:true,
+        },
+        display:'none'
+      })
+      gsap.to('.navbar-toggler',{
+        scrollTrigger:{
+          scrub:true,
+        },
+        display:'block',
+        transition:'0.3s',
+        order:'3'
+      })
+    </script>
     <!-- scripts -->
   </body>
 </html>
