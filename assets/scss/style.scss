@@ -8,9 +8,19 @@
 @import "./base/dev";
 
 // atoms
+@import "./atoms/button";
 
 // molecule
 
 // organisms
 
+@import "./organisms/header";
+@import "./organisms/mousehover";
+@import "./organisms/hero-sec";
+@import "./organisms/loader";
+
 // pages
+<<<<<<< Updated upstream
+=======
+@import "./organisms/homepage";
+>>>>>>> Stashed changes
