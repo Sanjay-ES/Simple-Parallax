@@ -1,0 +1,62 @@
+.pf-loader {
+    cursor: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: transparent;
+
+    &__outer {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__logo {
+        width: 100px;
+        height: 100px;
+
+        svg {
+            path {
+                &:last-child {
+                    fill: $color-white-1;
+                }
+            }
+
+            width: 100%;
+            height: 100%;
+        }
+
+        animation: drop-in 1s ease 0ms forwards;
+    }
+
+    &.remove {
+        animation: drop-out 1s ease 0ms forwards;
+    }
+}
+
+@keyframes drop-in {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0px);
+    }
+}
+
+@keyframes drop-out {
+    from {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+}

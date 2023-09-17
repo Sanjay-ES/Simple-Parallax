@@ -1,0 +1,74 @@
+.pf-hero-sec {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    h1 {
+        font-size: 60px;
+        margin-bottom: 24px;
+    }
+
+    h4 {
+        font-size: 30px;
+    }
+
+    &__head {
+        opacity: 0;
+        margin-bottom: 32px;
+        animation: drop-in 1.5s ease 0ms forwards;
+    }
+
+    &__buttons {
+        display: flex;
+        animation: drop-in 1.5s ease 0ms forwards;
+        justify-content: center;
+    }
+
+}
+
+@include mobile {
+    .pf-hero-sec {
+
+        h1 {
+            font-size: 45px;
+        }
+
+        h4 {
+            font-size: 25px;
+        }
+
+        &__head {
+            opacity: 0;
+            margin-bottom: 32px;
+            animation: drop-in 1.5s ease 0ms forwards;
+        }
+
+        &__buttons {
+            flex-direction: column;
+
+            .pf-btn {
+                margin-bottom: 16px;
+            }
+        }
+
+    }
+
+}
+
+@keyframes drop-in {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0px);
+    }
+}
