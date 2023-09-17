@@ -1,0 +1,468 @@
+.pf-header {
+    z-index: 15;
+    position: absolute;
+    width: 100%;
+    height: auto;
+    left: 0;
+    top: 70px;
+    animation: drop-in 1.5s ease 0ms forwards;
+
+    svg {
+
+        path,
+        circle,
+        rect {
+            fill: #ffffffcc;
+        }
+    }
+
+    &__outer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 -16px;
+    }
+
+    &__right {
+        display: flex;
+        align-items: center;
+
+        .pf-header__logo {
+            width: 30px;
+            height: auto;
+
+            &:first-child {
+                width: 25px;
+            }
+
+            .navigation__button {
+                width: 30px;
+                height: auto;
+            }
+        }
+    }
+
+    &__logo {
+        display: block;
+        position: relative;
+        width: 50px;
+        height: 50px;
+        margin: 0 16px;
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+@include mobile {
+    .pf-header {
+        top: 30px;
+
+        &__logo {
+            width: 45px;
+            height: 45px;
+        }
+    }
+}
+
+// 
+.heading-primary {
+    color: $color-white;
+    text-transform: uppercase;
+    backface-visibility: hidden;
+    margin-bottom: 6rem;
+
+    &--main {
+        display: block;
+        font-size: 6rem;
+        font-weight: 400;
+        letter-spacing: 3.5rem;
+        margin-right: -3.5rem;
+
+        animation-name: moveInLeft;
+        animation-duration: 1s;
+        animation-timing-function: ease-out;
+    }
+
+    &--sub {
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 1.75rem;
+        margin-right: -1.75rem;
+
+        animation: moveInRight 1s ease-out;
+    }
+}
+
+// Buttons
+.btn {
+
+    &,
+    &:link,
+    &:visited {
+        position: relative;
+        display: inline-block;
+        padding: 1.5rem 4rem;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 1.6rem;
+        border-radius: 5rem;
+        backface-visibility: hidden;
+        z-index: 0;
+
+        transition: all 0.2s;
+
+        // Changes for <button>
+        border: none;
+        cursor: pointer;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        border-radius: 5rem;
+        z-index: -1;
+
+        transition: all 0.4s;
+    }
+
+    &:hover,
+    &:focus {
+        transform: translateY(-0.3rem);
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+        // Changes for <button> on :focus
+        outline: none;
+
+        &::after {
+            opacity: 0;
+            transform: scaleX(1.4) scaleY(1.6);
+        }
+    }
+
+    &:active {
+        transform: translateY(-0.1rem);
+        box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+    }
+
+    &--white {
+        background-color: $color-white;
+        color: #777;
+
+        &::after {
+            background-color: $color-white;
+        }
+    }
+
+    &--animated {
+        animation: moveInBottom 0.5s ease-out 0.75s backwards;
+    }
+}
+
+// Header Animations
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-10rem);
+    }
+
+    80% {
+        transform: translateX(1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(10rem);
+    }
+
+    80% {
+        transform: translateX(-1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveInBottom {
+    from {
+        opacity: 0;
+        transform: translateY(3rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Navigation
+.navigation {
+
+    // Hidden Checkbox
+    &__checkbox {
+        display: none;
+
+        // Navigation Functionality
+        &:checked~.navigation__background {
+            transform: scale(400);
+        }
+
+        &:checked~.navigation__nav {
+            transform: translateX(0);
+            visibility: initial;
+            opacity: 1;
+        }
+
+        &:checked~.navigation__button {
+            transform: rotate(90deg);
+            transition: 0.5s;
+
+            svg path {
+                &:nth-child(even) {
+                    opacity: 0;
+                }
+            }
+        }
+    }
+
+    // Input Label -> Styled as a Button
+    &__button {
+        position: relative;
+        top: 0rem;
+        right: 0rem;
+        width: 7rem;
+        height: 7rem;
+        border-radius: 50%;
+        // background-color: $color-white;
+        box-shadow: 0 1rem 3rem rgba($color-black, 0.2);
+        cursor: pointer;
+        z-index: 12;
+        transform: rotate(-90deg);
+        transition: 0.5s;
+        // Center the Icon
+        text-align: center;
+    }
+
+    // Background Image / Gradient -> Hidden Behind a Label
+    &__background {
+        position: absolute;
+        top: 50%;
+        right: 40%;
+        transform: translate(-0%, -50%);
+        width: .5rem;
+        height: .5rem;
+        border-radius: 50%;
+        background-image: radial-gradient(#1f2029,
+                #3f3f3f);
+        z-index: 10;
+
+        transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+    }
+
+    // Menu Container
+    &__nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100%;
+        z-index: 11;
+
+        transform: translateX(-50%);
+        visibility: hidden;
+        opacity: 0;
+
+        transition: opacity 0.8s ease-in,
+            transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    // Unordered List
+    &__list {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        list-style: none;
+    }
+
+    // List Items with Automatic Counter
+    &__item {
+        margin: 1rem;
+        counter-increment: list;
+    }
+
+    // Item Links
+    &__link {
+
+        // Automatic Counter
+        &::before {
+            content: '0' counters(list, '');
+            padding-right: 1.2rem;
+        }
+
+        &:link,
+        &:visited {
+            display: inline-block;
+            font-size: 3rem;
+            font-weight: 300;
+            padding: 0 16px;
+            color: $color-white-1;
+            text-decoration: none;
+            text-transform: uppercase;
+            background-image: linear-gradient(120deg,
+                    transparent 0%,
+                    transparent 49.9%,
+                    $color-white-1 50%);
+            background-size: 227%;
+
+            transition: all 0.4s;
+        }
+
+        &:hover,
+        &:active {
+            color: #1f2029;
+            background-position: 100%;
+            transform: translateX(1rem);
+        }
+    }
+
+    // Icon Design
+    &__icon {
+        display: inline-block;
+        position: relative;
+        width: 3rem;
+        height: 0.5rem;
+        top: 37%;
+
+        transition: transform 0.25s ease-in-out;
+
+        &-span {
+            position: absolute;
+            height: 0.5rem;
+            width: 50%;
+            background: #777;
+
+            transition: all 0.5s ease-in;
+
+            &:nth-child(even) {
+                left: 50%;
+                border-radius: 0 0.9rem 0.9rem 0;
+            }
+
+            &:nth-child(odd) {
+                left: 0;
+                border-radius: 0.9rem 0 0 0.9rem;
+            }
+
+            &:nth-child(1),
+            &:nth-child(2) {
+                transform: translateY(-1rem);
+            }
+
+            &:nth-child(5),
+            &:nth-child(6) {
+                transform: translateY(1rem);
+            }
+        }
+    }
+
+    &__checkbox:checked+&__button &__icon-span {
+
+        &:nth-child(1),
+        &:nth-child(6) {
+            transform: rotate(45deg);
+        }
+
+        &:nth-child(2),
+        &:nth-child(5) {
+            transform: rotate(-45deg);
+        }
+    }
+
+    &__checkbox:checked+&__button &__icon-span {
+
+        &:nth-child(2),
+        &:nth-child(6) {
+            transform-origin: left;
+        }
+
+        &:nth-child(1),
+        &:nth-child(5) {
+            transform-origin: right;
+        }
+    }
+
+    &__checkbox:checked+&__button &__icon-span {
+        &:nth-child(3) {
+            left: -50%;
+            opacity: 0;
+        }
+
+        &:nth-child(4) {
+            left: 100%;
+            opacity: 0;
+        }
+    }
+
+    &__button:hover &__icon-span {
+        &:nth-child(3) {
+            transform: translateX(-0.3rem) scale(1.1);
+        }
+
+        &:nth-child(4) {
+            transform: translateX(0.3rem) scale(1.1);
+        }
+    }
+
+    &__checkbox:checked+&__button:hover &__icon {
+        transform: rotate(180deg);
+    }
+}
+
+// Header
+.header {
+    background-image: linear-gradient(to right bottom, #7ed56f, #28b485);
+    height: 95vh;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+    &__text-box {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+}
+
+// 
+
+@keyframes drop-in {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0px);
+    }
+}
